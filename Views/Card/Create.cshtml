@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Create Card";
+}
+<h2>Create Card</h2>
+<form asp-action="Create" asp-controller="Card" method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label for="CustomerId" class="form-label">Customer ID</label>
+        <input id="CustomerId" name="CustomerId" type="number" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="CardType" class="form-label">Card Type</label>
+        <select id="CardType" name="CardType" class="form-select" required>
+            <option value="">-- Select --</option>
+            <option value="DEBIT">DEBIT</option>
+            <option value="CREDIT">CREDIT</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="CardNumber" class="form-label">Card Number</label>
+        <input id="CardNumber" name="CardNumber" class="form-control" maxlength="16" required />
+        <small class="text-muted">Must be unique.</small>
+    </div>
+
+    <div class="mb-3">
+        <label for="ExpiryDate" class="form-label">Expiry Date</label>
+        <input id="ExpiryDate" name="ExpiryDate" type="date" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Status" class="form-label">Status</label>
+        <select id="Status" name="Status" class="form-select">
+            <option>ACTIVE</option>
+            <option>BLOCKED</option>
+            <option>CLOSED</option>
+        </select>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" asp-controller="Card" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

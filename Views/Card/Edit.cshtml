@@ -1,0 +1,27 @@
+﻿@model BankingWebApp.Models.CardEditViewModel
+@{
+    ViewData["Title"] = "Edit Card";
+}
+<h2>Edit Card</h2>
+<form asp-action="Edit" asp-controller="Card" asp-route-id="@Model.CardId" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="CardId" />
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label"></label>
+        <select asp-for="Status" class="form-select">
+            <option>ACTIVE</option>
+            <option>BLOCKED</option>
+            <option>CLOSED</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" asp-controller="Card" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

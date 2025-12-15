@@ -1,0 +1,37 @@
+﻿@model System.Data.DataTable
+
+<h2>Account List</h2>
+<a asp-controller="Account" asp-action="Create" class="btn btn-primary">Create New Account</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @foreach (System.Data.DataColumn col in Model.Columns)
+            {
+                <th>@col.ColumnName</th>
+            }
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (System.Data.DataRow row in Model.Rows)
+        {
+            var id = Convert.ToInt32(row["ACCOUNT_ID"]);
+            <tr>
+                @foreach (var item in row.ItemArray)
+                {
+                    <td>@item</td>
+                }
+                <td class="d-flex gap-1">
+                    <a asp-controller="Account"
+                       asp-action="Edit"
+                       asp-route-id="@id"
+                       class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
